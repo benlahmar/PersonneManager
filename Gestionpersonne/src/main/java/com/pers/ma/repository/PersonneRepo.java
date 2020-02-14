@@ -1,12 +1,14 @@
 package com.pers.ma.repository;
 
-import java.util.List;
 
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.pers.ma.model.Personne;
 
 public interface PersonneRepo extends JpaRepository<Personne, Long> {
-	List<Personne> findByNom(String nom);
-	List<Personne> findByCin(String cin);
+	Page<Personne> findByNom(String nom, Pageable p);
+	Personne findByCin(String cin);
 }

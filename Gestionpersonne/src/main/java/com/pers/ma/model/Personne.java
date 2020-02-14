@@ -7,12 +7,14 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author BENLAHMAR EL Habib
  *
  */
 @Entity
+
 public class Personne {
 
 	@Id
