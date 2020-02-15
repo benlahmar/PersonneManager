@@ -3,10 +3,16 @@
  */
 package com.pers.ma.rest;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -32,10 +38,23 @@ import com.pers.ma.repository.PersonneRepo;
  */
 @RestController
 @RequestMapping("/api")
+@RefreshScope
 public class PersonneRest {
 
 	@Autowired
 	PersonneRepo prepo;
+	@Value("${auteur}")
+	String auteur;
+	@GetMapping("/config")
+	public Map<String,String> myconfig()
+	{
+		
+		Map<String,String> ls=new LinkedHashMap<>();
+		ls.put("auteur",auteur);
+		return 
+				ls;
+	}
+	
 	
 	@GetMapping("/personnes")
 	public List<Personne> all()
